@@ -113,3 +113,33 @@ th:hover .reactPivot-hideColumn {
 .reactPivot-pageNumber.is-selected {
   font-weight: bold;
 }
+
+table {
+  margin-left: 20px;
+  margin-right: 20px;
+  border: thin solid black;
+}
+
+th, td {
+  border: thin dotted gray;
+  text-align: center;
+  vertical-align: middle;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+th {
+  background-color: #528bb8;
+}
+
+tr:nth-child(even) {
+  background-color: white;
+}
+
+span:empty {
+  display: none;
+}
+
+tr:nth-child(odd) {
+  background-color: lightgray;
+}

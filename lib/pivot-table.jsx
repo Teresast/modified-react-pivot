@@ -1,8 +1,9 @@
 var _ = { range: require('lodash/range') }
+var lodash = require('lodash')
 var React = require('react')
 var partial = require('./partial')
 var getValue = require('./get-value')
-
+var colData = require('../example/colData.js')
 module.exports = React.createClass({
 
   getDefaultProps: function () {
@@ -13,7 +14,8 @@ module.exports = React.createClass({
       sortDir: 'asc',
       onSort: function () {},
       onSolo: function () {},
-      onColumnHide: function () {}
+      onColumnHide: function () {},
+      onSetDimensions: function () {}
     }
   },
 
@@ -29,7 +31,8 @@ module.exports = React.createClass({
     var paginatedResults = this.paginate(results)
 
     var tBody = this.renderTableBody(this.props.columns, paginatedResults.rows)
-    var tHead = this.renderTableHead(this.props.columns)
+    //var tHead = this.renderTableHead(this.props.columns)
+    var tHead = this.myRenderTableHead()
 
     return (
       <div className='reactPivot-results'>
@@ -42,7 +45,55 @@ module.exports = React.createClass({
       </div>
     )
   },
+  myRenderTableHead: function() {
+    var firstLayer = []
+    var secondLayer = []
+    var thirdLayer = []
+    var o_c = []
+    lodash.map(colData,(function(value, key) {
+      if (lodash.split(key, '_').length == 1) {
+        firstLayer = lodash.concat(firstLayer,<th colSpan={value.col} rowSpan={value.row}>{key}</th>)
+      } else if (lodash.split(key, '_').length == 2) {
+        secondLayer = lodash.concat(secondLayer,<th colSpan={value.col} rowSpan={value.row}>{lodash.split(key, '_')[1]}</th>)
+      } else if (lodash.split(key, '_').length == 3) {
+        thirdLayer = lodash.concat(thirdLayer,<th colSpan={value.col} rowSpan={value.row}>{lodash.split(key, '_')[2]}</th>)
+      }
 
+      if (!value.hasChildren) {
+        o_c = lodash.concat(o_c,<th>O</th>,<th>C</th>)
+      }
+    }))
+
+    var maxLayer = thirdLayer.length > 0 ? 4 : secondLayer.length >0 ? 3 : 2
+
+    return (
+      <thead>
+        <tr>
+          <th rowSpan={maxLayer}>Semana</th>
+          {lodash.forEach(firstLayer, (function (value) {
+            return  value
+          }))}
+        </tr>
+        <tr>
+          {lodash.forEach(secondLayer, (function (value) {
+            return  value
+          }))}
+        </tr>
+        <tr>
+          {lodash.forEach(thirdLayer, (function (value) {
+            return  value
+          }))}
+        </tr>
+      <tr>
+        {lodash.forEach(o_c, (function (value) {
+          return  value
+        }))}
+      </tr>
+      </thead>
+    )
+  }
+
+  ,
   renderTableHead: function(columns) {
     var self = this
     var sortBy = this.props.sortBy
@@ -85,11 +136,15 @@ module.exports = React.createClass({
     return (
       <tbody>
         {rows.map(function(row) {
+          var flag = false
           return (
             <tr key={row._key} className={"reactPivot-level-" + row._level}>
               {columns.map(function(col, i) {
-                if (i < row._level) return <td key={i} className='reactPivot-indent' />
-
+                if (i < row._level) return ""
+                if (col.type == "dimension") {
+                  if (flag) return ""
+                  flag = true
+                }
                 return self.renderCell(col, row)
               })}
             </tr>
@@ -98,6 +153,13 @@ module.exports = React.createClass({
         })}
       </tbody>
     )
+  },
+  onClickRows: function (p1, p2) {
+    if (p1.title == "Province") {
+      this.props.onSetDimensions(["Province", "District"])
+    } else if (p1.title == "District") {
+      this.props.onSetDimensions(["Province", "District", "Facility"])
+    }
   },
 
   renderCell: function(col, row) {
@@ -115,11 +177,7 @@ module.exports = React.createClass({
     if (dimensionExists) {
       var solo = (
         <span className='reactPivot-solo'>
-          <a style={{cursor: 'pointer'}}
-             onClick={partial(this.props.onSolo, {
-                title: col.title,
-                value: val
-              })}>solo</a>
+          <a onClick={partial(this.onClickRows, {title: col.title,value: val})}>-----click</a>
         </span>
       )
     }
@@ -128,7 +186,7 @@ module.exports = React.createClass({
       <td className={col.className}
           key={[col.title, row.key].join('\xff')}
           title={col.title}>
-        <span dangerouslySetInnerHTML={{__html: text || ''}}></span> {solo}
+        <span dangerouslySetInnerHTML={{__html: text || '0'}}></span> {solo}
       </td>
     )
   },

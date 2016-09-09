@@ -1,0 +1,98 @@
+[
+  {
+    "province": "Province 1",
+    "district": "District 1",
+    "facility": "Facility 1",
+    "name": "SARAMPO 055_Menos de 9 meses",
+    "SARAMPO 055_Menos de 9 meses_case": 10,
+    "SARAMPO 055_Menos de 9 meses_death": 20
+  },
+  {
+    "province": "Province 1",
+    "district": "District 1",
+    "facility": "Facility 2",
+    "name": "SARAMPO 055_Menos de 9 meses",
+    "SARAMPO 055_Menos de 9 meses_case": 11,
+    "SARAMPO 055_Menos de 9 meses_death": 21
+  },
+  {
+    "province": "Province 1",
+    "district": "District 1",
+    "facility": "Facility 3",
+    "name": "SARAMPO 055_Menos de 9 meses",
+    "SARAMPO 055_Menos de 9 meses_case": 18,
+    "SARAMPO 055_Menos de 9 meses_death": 28
+  },
+  {
+    "province": "Province 1",
+    "district": "District 1",
+    "facility": "Facility 4",
+    "name": "SARAMPO 055_9-23 meses_Nāo Vacinados",
+    "SARAMPO 055_9-23 meses_Nāo Vacinados_case": 12,
+    "SARAMPO 055_9-23 meses_Nāo Vacinados_death": 22
+  },
+  {
+    "province": "Province 1",
+    "district": "District 2",
+    "facility": "Facility 4",
+    "name": "SARAMPO 055_9-23 meses_Vacinados",
+    "SARAMPO 055_9-23 meses_Vacinados_case": 13,
+    "SARAMPO 055_9-23 meses_Vacinados_death": 23
+  },
+  {
+    "province": "Province 1",
+    "district": "District 2",
+    "facility": "Facility 5",
+    "name": "SARAMPO 055_24 meses c mais",
+    "SARAMPO 055_24 meses c mais_case": 14,
+    "SARAMPO 055_24 meses c mais_death": 25
+  },
+  {
+    "province": "Province 1",
+    "district": "District 2",
+    "facility": "Facility 6",
+    "name": "037 TÉTANO RECÉM NASCIDOS",
+    "037 TÉTANO RECÉM NASCIDOS_case": 16,
+    "037 TÉTANO RECÉM NASCIDOS_death": 27
+  },
+  {
+    "province": "Province 1",
+    "district": "District 2",
+    "facility": "Facility 7",
+    "name": "MALARIA 084_0-4 anos",
+    "MALARIA 084_0-4 anos_case": 18,
+    "MALARIA 084_0-4 anos_death": 28
+  },
+  {
+    "province": "Province 1",
+    "district": "District 3",
+    "facility": "Facility 8",
+    "name": "MALARIA 084_5 anos",
+    "MALARIA 084_5 anos_case": 19,
+    "MALARIA 084_5 anos_death": 29
+  },
+  {
+    "province": "Province 2",
+    "district": "District 1",
+    "facility": "Facility 9",
+    "name": "045 PARALISIA FLÁCIDA AGUDA",
+    "045 PARALISIA FLÁCIDA AGUDA_case": 30,
+    "045 PARALISIA FLÁCIDA AGUDA_death": 30
+  },
+  {
+    "province": "Province 2",
+    "district": "District 1",
+    "facility": "Facility 10",
+    "name": "071 RAIVA",
+    "071 RAIVA_case": 31,
+    "071 RAIVA_death": 31
+  },
+  {
+    "province": "Province 2",
+    "district": "District 3",
+    "facility": "Facility 11",
+    "name": "DIARREIA 009_0-4 anos",
+    "DIARREIA 009_0-4 anos_case": 32,
+    "DIARREIA 009_0-4 anos_death": 32
+  }
+]

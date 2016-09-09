@@ -1,7 +1,8 @@
 var _ = {
   filter: require('lodash/filter'),
   map: require('lodash/map'),
-  find: require('lodash/find')
+  find: require('lodash/find'),
+  remove: require('lodash/remove')
 }
 var React = require('react')
 var DataFrame = require('dataframe')
@@ -146,7 +147,8 @@ module.exports = React.createClass({
           onSort={this.setSort}
           onColumnHide={this.hideColumn}
           nPaginateRows={this.props.nPaginateRows}
-          onSolo={this.setSolo} />
+          onSolo={this.setSolo}
+          onSetDimensions={this.setDimensions}/>
 
       </div>
     )
@@ -154,7 +156,7 @@ module.exports = React.createClass({
     return html
   },
 
-  updateRows: function () {
+  updateRows: function (openRow) {
     var columns = this.getColumns()
 
     var sortByTitle = this.state.sortBy
@@ -179,6 +181,10 @@ module.exports = React.createClass({
     }
 
     var rows = this.dataFrame.calculate(calcOpts)
+    _.remove(rows, function(row) {
+        return row.Province != openRow
+      }
+    )
     this.setState({rows: rows})
     this.props.onData(rows)
   },
